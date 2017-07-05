@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: testRabbitMQ
+  profiles:
+    active: dev
+  rabbitmq:
+    host: jiangxj-01.com
+    port: 5672
+    username: admin
+    password: 123456
+server:
+  port: 1002

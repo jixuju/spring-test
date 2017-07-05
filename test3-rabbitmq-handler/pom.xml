@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.superwind</groupId>
-	<artifactId>test1-cache</artifactId>
+	<artifactId>test3-rabbitmq-handler</artifactId>
 	<version>master-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -17,36 +17,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<guava.version>22.0</guava.version>
-	</properties>
-
 	<dependencies>
-		<!--<dependency>-->
-			<!--<groupId>com.google.guava</groupId>-->
-			<!--<artifactId>guava</artifactId>-->
-			<!--<version>${guava.version}</version>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -57,7 +31,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot.version}</version>
 				<configuration>
-					<mainClass>com.superwind.CacheApplication</mainClass>
+					<mainClass>com.superwind.test3rabbitmq.Test3RabbitmqHandlerApplication</mainClass>
 					<classifier>exec</classifier>
 					<executable>true</executable>
 				</configuration>
@@ -79,4 +53,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
 </project>
