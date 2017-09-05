@@ -1,7 +1,8 @@
 package com.superwind.test3rabbitmq.service;
 
+import com.superwind.test3rabbitmq.pojo.UserInfo;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,16 +12,21 @@ import java.util.Date;
  * Created by jiangxj on 2017/7/4.
  */
 @Component
-public class SenderService {
+public class DirectSenderService {
     @Autowired
-    private AmqpTemplate rabbitTemplate;
+    private AmqpTemplate amqpTemplate;
     @Autowired
-    private Queue queue;
+    private RabbitTemplate rabbitTemplate;
 
     public void send(String message) {
         String context = message + " " + new Date();
         System.out.println("Sender : " + context);
-        rabbitTemplate.convertAndSend("one", context);
+        rabbitTemplate.convertAndSend("direct", context);
+    }
+
+    public void sendObj(UserInfo userInfo) {
+        System.out.println("Sender object: " + userInfo);
+        rabbitTemplate.convertAndSend("direct", userInfo);
     }
 
 }

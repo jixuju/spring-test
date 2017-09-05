@@ -1,6 +1,7 @@
 package com.superwind.test3rabbitmq.web;
 
-import com.superwind.test3rabbitmq.service.SenderService;
+import com.superwind.test3rabbitmq.pojo.UserInfo;
+import com.superwind.test3rabbitmq.service.DirectSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,10 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SendControler {
     @Autowired
-    SenderService senderService;
+    DirectSenderService directSenderService;
 
-    @PostMapping("/testMQ/send")
-    public void addUser(@RequestBody String message) {
-        senderService.send(message);
+    @PostMapping("/testMQ/sendDirect")
+    public void send(@RequestBody String message) {
+        directSenderService.send(message);
+    }
+
+    @PostMapping("/testMQ/sendObj")
+    public void sendObj(@RequestBody UserInfo userInfo) {
+        directSenderService.sendObj(userInfo);
     }
 }
