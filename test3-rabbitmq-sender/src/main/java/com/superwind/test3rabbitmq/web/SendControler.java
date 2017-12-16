@@ -1,8 +1,10 @@
 package com.superwind.test3rabbitmq.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.superwind.test3rabbitmq.pojo.UserInfo;
 import com.superwind.test3rabbitmq.service.DirectSenderService;
-import com.superwind.test3rabbitmq.util.JsonUtil;
+import com.superwind.test3rabbitmq.util.CustomNullValueMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,12 @@ public class SendControler {
 
     @PostMapping("/testMQ/sendString")
     public void send(@RequestBody UserInfo userInfo) {
-        directSenderService.send(JsonUtil.toJSON(userInfo));
+        ObjectMapper mapper = new CustomNullValueMapper();
+        try {
+            directSenderService.send(mapper.writeValueAsString(userInfo));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     @PostMapping("/testMQ/sendObj")
