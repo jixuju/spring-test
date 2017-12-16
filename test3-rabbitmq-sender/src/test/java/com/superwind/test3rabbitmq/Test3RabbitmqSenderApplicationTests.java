@@ -43,7 +43,7 @@ public class Test3RabbitmqSenderApplicationTests {
 
 	@Test
 	public void testSendCallback() throws Exception {
-		callbackSenderService.send("message topicA","topic.A");
+		callbackSenderService.send("message topicA callback","topic.A");
 	}
 
 }

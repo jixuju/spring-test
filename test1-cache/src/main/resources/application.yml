@@ -29,7 +29,7 @@ spring:
     pool.min-idle: 5
     pool.max-wait: 2000
     timeout: 5000
-    host: jiangxj-01.com
+    host: jiangxj-02.com
     password: test123
     port: 6379
     database: 2
