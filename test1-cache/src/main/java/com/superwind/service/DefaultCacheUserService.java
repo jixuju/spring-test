@@ -20,8 +20,6 @@ import org.springframework.stereotype.Service;
 public class DefaultCacheUserService {
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private CacheManager cacheManager;
 
     @CachePut(value="User", key = "#user.id.toString()")
     public User save(byte operType, User user){

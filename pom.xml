@@ -17,6 +17,12 @@
         <module>test3-rabbitmq-handler</module>
         <module>test4-kafka-producer</module>
         <module>test4-kafka-consumer</module>
+        <module>test5-wechat</module>
+        <module>test6-messages</module>
+        <module>test7-mail</module>
+        <module>test8-zookeeper</module>
+        <module>test9-tbschedule</module>
+        <module>test10-newSpring</module>
     </modules>
 
     <properties>
@@ -37,12 +43,20 @@
         <mybatis-generator-maven-plugin>1.3.3</mybatis-generator-maven-plugin>
 
         <!--Spring Dependencies -->
-        <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.11.RELEASE</spring-boot.version>
+        <spring-boot-admin.version>1.5.7</spring-boot-admin.version>
+        <spring-cloud.version>Edgware.SR1</spring-cloud.version>
 
-        <mybatis-spring-boot-starter.version>1.3.0</mybatis-spring-boot-starter.version>
+        <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
 
         <sonar.jacoco.utReportPath>${project.basedir}/jacoco-ut.exec</sonar.jacoco.utReportPath>
         <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
+        <json-lib.version>2.4</json-lib.version>
+        <xstream.version>1.4.9</xstream.version>
+
+        <jsch.version>0.1.54</jsch.version>
+        <commons-lang.version>2.5</commons-lang.version>
+        <commons-net.version>3.1</commons-net.version>
         <jwt-version>0.7.0</jwt-version>
     </properties>
 
@@ -55,6 +69,18 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -87,6 +113,42 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <!-- Admin Dependencies-->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>${json-lib.version}</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${xstream.version}</version>
+        </dependency>
+
+        <!-- Common Dependencies: Compile-->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${commons-net.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>${jsch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt-version}</version>
         </dependency>
     </dependencies>
 

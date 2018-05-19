@@ -10,7 +10,12 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.cache.interceptor.KeyGenerator;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by jiangxj on 2017/6/12.
@@ -20,10 +25,35 @@ import org.springframework.stereotype.Service;
 public class RedisCacheUserService {
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private CacheManager cacheManager;
 
-    @CachePut(value="User", key = "#user.id.toString()")
+    public static class RedisUserKeyGenerator implements KeyGenerator {
+        @Override
+        public Object generate(Object target, Method method, Object... params) {
+            StringBuilder key = new StringBuilder();
+            key.append("user:redis:"+((User) params[1]).getId());
+            String keyStr= key.toString();
+            return keyStr;
+        }
+    }
+    @Bean
+    public RedisUserKeyGenerator redisUserKeyGenerator() {
+        return new RedisUserKeyGenerator();
+    }
+
+    @Caching(
+        put = {
+            @CachePut(
+                value = "RedisUser#60",
+                keyGenerator = "redisUserKeyGenerator"
+            )
+        },
+        evict = {
+            @CacheEvict(
+                value = "GuavaUser",
+                allEntries = true
+            )
+        }
+    )
     public UserBean save(byte operType, User user){
         log.info("save begin ...");
         if (1 == operType){
@@ -37,7 +67,7 @@ public class RedisCacheUserService {
         return userBean;
     }
 
-    @Cacheable(value = "User", key = "#id.toString()")
+    @Cacheable(value = "RedisUser", key = "#id.toString()")
     public UserBean findByPk(Integer id){
         log.info("find begin ...");
         User userRsp = userMapper.selectByPrimaryKey(id);
@@ -46,7 +76,7 @@ public class RedisCacheUserService {
         return userBean;
     }
 
-    @CacheEvict(value = "User", key = "#id.toString()")
+    @CacheEvict(value = "RedisUser", key = "#id.toString()")
     public void delete(Integer id){
         log.info("delete begin ...");
         userMapper.deleteByPrimaryKey(id);

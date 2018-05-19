@@ -22,7 +22,9 @@ spring:
       max-active: 8
       jdbc-interceptors: ConnectionState;SlowQueryReport(threshold=0)
   cache:
-    type: redis
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
   redis:
     pool.max-idle: 10
     pool.max-active: 10

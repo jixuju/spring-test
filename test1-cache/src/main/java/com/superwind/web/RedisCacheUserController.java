@@ -2,7 +2,6 @@ package com.superwind.web;
 
 import com.superwind.model.User;
 import com.superwind.pojo.UserBean;
-import com.superwind.service.DefaultCacheUserService;
 import com.superwind.service.RedisCacheUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

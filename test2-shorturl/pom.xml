@@ -36,7 +36,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${spring-boot.version}</version>
 				<configuration>
-					<mainClass>com.superwind.Test2ShorturlApplication</mainClass>
+					<mainClass>com.superwind.test2shorturl.Test2ShorturlApplication</mainClass>
 					<classifier>exec</classifier>
 					<executable>true</executable>
 				</configuration>
