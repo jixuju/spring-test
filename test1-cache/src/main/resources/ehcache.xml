@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+    <cache name="EhUser"
+           maxEntriesLocalHeap="200"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           overflowToDisk="true" >
+    </cache>
+</ehcache>

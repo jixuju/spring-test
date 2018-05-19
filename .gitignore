@@ -29,5 +29,5 @@ target/
 .DS_Store
 Thumbs.db
 
-#wenwen ignore
+#ignore
 logs/
