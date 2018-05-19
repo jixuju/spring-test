@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: test5-wechat
+  redis:
+    pool.max-idle: 10
+    pool.max-active: 10
+    pool.min-idle: 5
+    pool.max-wait: 2000
+    timeout: 5000
+    host: jiangxj-02.com
+    password: test123
+    port: 6379
+    database: 2
+superwind:
+  wechat:
+    #是否启用定时自动刷新从微信获取的Token
+    appid: *********
+    appsecret: ********
+
